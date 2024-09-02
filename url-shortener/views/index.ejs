@@ -31,7 +31,7 @@
             height: 30px;
             padding: 5px 15px;
             font-size: 14px;
-            background-color: #4CAF50;
+            background-color: #8d4e1b;
             color: white;
             border: none;
             cursor: pointer;
@@ -50,7 +50,7 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color: #8d4e1b;
             color: white;
         }
     </style>
@@ -83,11 +83,14 @@
                 <td><a href="https://stackoverflow.com/users/11936196/seif-el-din-sweilam">https://stackoverflow.com/users/11936196/seif-el-din-sweilam</a></td>
                 <td><a href="http://localhost:3000/stackoverflow">http://localhost:3000/stackoverflow</a></td>
             </tr>
-            <tr>
-                <td><a href="https://drive.google.com/drive/u/1/folders/1bpiBKNBd9n0Z79wrZvHVT1KyA9OBROLx">https://drive.google.com/drive/u/1/folders/1bpiBKNBd9n0Z79wrZvHVT1KyA9OBROLx</a></td>
-                <td><a href="http://localhost:3000/himym">http://localhost:3000/himym</a></td>
+            <% urls.forEach(item => {%>
+                <tr>
+              <td> <a href="<%= item.urlInput %>"><%= item.urlInput %></a> </td>
+              <td><a href="<%= item.shortenUrl %> "><%= item.shortenUrl %> </a></td> 
             </tr>
+            <%  }); %>
         </table>
+        
     </div>
 </body>
 
