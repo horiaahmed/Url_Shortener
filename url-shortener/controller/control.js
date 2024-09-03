@@ -19,14 +19,26 @@ const getURLs=((req,res)=>{
 
 const postURLs=((req,res)=>{
     const alias=req.body.aliasInput
-    let Urlbody={
-        urlInput:req.body.urlInput,
-        alias:alias,
-        shortenUrl:`http://localhost:3000/${alias}`
-}
-    db.collection('shortenurls').insertOne(Urlbody)
-    .then(()=>{res.redirect('/')})
-    .catch((err)=>{console.log(err);})
+    db.collection('shortenurls').findOne({alias:alias}) 
+    .then((result)=>{
+        if (result) {
+            res.send('<script>alert("This alias is already taken, please insert a new one."); window.location.href = "/"</script>');
+            
+        }
+        else{
+            let Urlbody={
+                urlInput:req.body.urlInput,
+                alias:alias,
+                shortenUrl:`http://localhost:3000/${alias}`
+        }
+            db.collection('shortenurls').insertOne(Urlbody)
+            .then(()=>{res.redirect('/')})
+            .catch((err)=>{console.log(err);})
+    
+        }
+    })
+   
+    
 })
 
 const redirectURL=((req,res)=>{
